@@ -30,7 +30,6 @@ class _ChatPageState extends State<ChatPage> {
 
     setState(() {
       for (var i = 0; i < body.length; i++) {
-        print(body[i]);
         chatUsers.add(
           ChatUser(
               id_conv: body[i][0],

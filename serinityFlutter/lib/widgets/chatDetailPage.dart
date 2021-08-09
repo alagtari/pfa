@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'models/Msg.dart';
-import 'widgets/SendMsg.dart';
-import 'widgets/ReceiveMsg.dart';
+
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:project/models/Msg.dart';
+import 'package:project/widgets/ReceiveMsg.dart';
+import 'package:project/widgets/SendMsg.dart';
+
+import '../HomeChat.dart';
 
 class ChatDetailPage extends StatefulWidget {
   int id_conv;
@@ -67,7 +70,10 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
               children: <Widget>[
                 IconButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return HomeChat(widget.email);
+                    }));
                   },
                   icon: Icon(
                     Icons.arrow_back,
@@ -191,7 +197,6 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                       var url = Uri.parse(strurl);
                       var response = await http.get(url);
                       final body = jsonDecode(response.body);
-                      print(body);
                       setState(() {
                         this.messeges = [];
                       });
